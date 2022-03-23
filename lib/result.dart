@@ -4,9 +4,11 @@ class Result extends StatelessWidget {
   const Result({
     Key? key,
     required this.totolScore,
+    required this.resetHandler,
   }) : super(key: key);
 
   final int totolScore;
+  final VoidCallback resetHandler;
   String get resultPhrase {
     String resultText;
     if (totolScore <= 8) {
@@ -23,12 +25,17 @@ class Result extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        resultPhrase,
-        style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
-        textAlign: TextAlign.center,
-      ),
+    return Column(
+      children: [
+        Center(
+          child: Text(
+            resultPhrase,
+            style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          ),
+        ),
+        TextButton(onPressed: resetHandler, child: Text('Restart Quiz'))
+      ],
     );
   }
 }
